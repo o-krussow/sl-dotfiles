@@ -1,0 +1,25 @@
+https://www.reddit.com/r/cloudygamer/comments/a60jj4/how_do_you_use_geforce_gfegamestream_on_tesla/?ref=share&ref_source=embed&utm_content=title&utm_medium=post_embed&utm_name=e3f181661b654166a9ceed10f68e5fb2&utm_source=embedly&utm_term=a60jj4
+
+https://www.techpowerup.com/forums/threads/nvidia-tesla-k80-questions.259865/
+
+ettercap for arp spoofing attacks
+
+startpage search engine
+
+pi 0 w with old laptop webcams as security cameras, connect via usb headers
+
+image deployment system (build a squashfs image, configure to use server as san storage), use pxeboot? every time i want to update, just update the iso that the compute boots
+
+fix combat block friends
+
+look into setting up radarr+sonarr for jellyfin or plex
+fr tho ettercap kinda cool
+
+setup local repos for arch+debian+gentoo+ubuntu derivatives
+
+put cockpit on virtual machines on server to monitor them
+
+make gentoo install script
+
+gentoo binhost
+

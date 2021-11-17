@@ -1,0 +1,5 @@
+LOCATION: /usr/share/doc/arch-wiki/html/en
+
+So just do:
+
+firefox /usr/share/doc/arch-wiki/html/en/Table_of_contents.html
