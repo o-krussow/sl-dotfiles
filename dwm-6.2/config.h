@@ -1,5 +1,5 @@
 /* See LICENSE file for copyright and license details. */
-/* ranger, ncmpcpp, chromium, mpv, st, slock, mpc, dmenu
+/* ranger, ncmpcpp, brave, mpv, st, slock, mpc, dmenu
  * 							*/
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -30,10 +30,10 @@ static const Rule rules[] = {
 		 *                   *      WM_NAME(STRING) = title
 		 *                            */
 	        /* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	    { "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
+		{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
 		{ "Firefox", NULL,     NULL,           0,         0,          0,          -1,        -1 },
 		{ "st",      NULL,     NULL,           0,         0,          1,          -1,        -1 },
-	    { NULL,      NULL,     "Event Tester", 0,         1,          0,           1,        -1 }, /* xev */
+		{ NULL,      NULL,     "Event Tester", 0,         1,          0,           1,        -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -46,7 +46,9 @@ static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle }, { "(@)", spiral }, { "[\\]", dwindle },
+	{ "[M]",      monocle }, 
+	{ "(@)", spiral }, 
+	{ "[\\]", dwindle },
 };
 
 /* key definitions */
@@ -66,7 +68,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "rofi", "-show", "run", "-theme", "/home/owen/misc/rofi/android_notification.rasi", NULL };
 static const char *sshmenucmd[] = { "rofi", "-show", "ssh", "-theme", "/home/owen/misc/rofi/android_notification.rasi", NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *chromiumcmd[] = { "brave", NULL };
+static const char *bravecmd[] = { "brave", NULL };
 static const char *picomcmd[] = { "picom", "--no-fading-openclose", NULL };
 static const char *killpicomcmd[] = { "pkill", "picom", NULL };
 static const char *rangercmd[] = { "st", "ranger", NULL };
@@ -88,7 +90,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_w,      spawn,          {.v = chromiumcmd } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = bravecmd } },
 	{ MODKEY,                       XK_o,      spawn,          {.v = picomcmd } },
 	{ MODKEY,                       XK_t,      spawn,          {.v = killpicomcmd } },
 	{ MODKEY,                       XK_n,      spawn,          {.v = ncmpcppcmd } },
@@ -97,7 +99,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_s,      spawn,          {.v = spotifycmd } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = sshmenucmd } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = ideascmd } },
-    { MODKEY,                       XK_e,      spawn,          {.v = openideascmd } },
+    	{ MODKEY,                       XK_e,      spawn,          {.v = openideascmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_Down,   focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_Up,     focusstack,     {.i = -1 } },
