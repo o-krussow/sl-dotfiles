@@ -1089,7 +1089,6 @@ void
 kscrollup(const Arg* a)
 {
 	int n = a->i;
-	printf("%d", n);
 	if (n < 0)
 		n = term.row + n;
 

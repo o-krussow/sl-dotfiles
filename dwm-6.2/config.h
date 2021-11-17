@@ -8,8 +8,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "monospace:size=11" };
+static const char dmenufont[]       = "monospace:size=11";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -30,10 +30,10 @@ static const Rule rules[] = {
 		 *                   *      WM_NAME(STRING) = title
 		 *                            */
 	        /* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-		{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-		{ "Firefox", NULL,     NULL,           0,         0,          0,          -1,        -1 },
+	        { "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
+		{ "Firefox", NULL,     NULL,           0,    0,          0,          -1,        -1 },
 		{ "st",      NULL,     NULL,           0,         0,          1,          -1,        -1 },
-		{ NULL,      NULL,     "Event Tester", 0,         1,          0,           1,        -1 }, /* xev */
+	        { NULL,      NULL,     "Event Tester", 0,         1,          0,           1,        -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -46,9 +46,7 @@ static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle }, 
-	{ "(@)", spiral }, 
-	{ "[\\]", dwindle },
+	{ "[M]",      monocle }, { "(@)", spiral }, { "[\\]", dwindle },
 };
 
 /* key definitions */
@@ -65,28 +63,31 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 //static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *dmenucmd[] = { "rofi", "-show", "run", "-theme", "/home/owen/misc/rofi/android_notification.rasi", NULL };
-static const char *sshmenucmd[] = { "rofi", "-show", "ssh", "-theme", "/home/owen/misc/rofi/android_notification.rasi", NULL };
+static const char *dmenucmd[] = { "rofi", "-show", "run", "-theme", "~/misc/rofi/android_notification.rasi", NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *bravecmd[] = { "brave", NULL };
-static const char *picomcmd[] = { "picom", "--no-fading-openclose", NULL };
+static const char *bravecmd[] = { "brave-bin", NULL };
+static const char *picomcmd[] = { "picom", NULL };
 static const char *killpicomcmd[] = { "pkill", "picom", NULL };
 static const char *rangercmd[] = { "st", "ranger", NULL };
 static const char *ncmpcppcmd[] = { "st", "ncmpcpp", NULL };
 static const char *slockcmd[] = { "slock", NULL };
-static const char *volupcmd[] = { "pactl", "set-sink-volume", "1", "+5%", NULL };
-static const char *voldowncmd[] = { "pactl", "set-sink-volume", "1", "-5%", NULL };
-static const char *playpausecmd[] = { "playerctl", "--player=spotify", "play-pause", NULL };
+static const char *slocksleepcmd[] = { "bash", "/home/owen/misc/scripts/lockandsleep.sh", NULL };
+static const char *volupcmd[] = { "bash", "/home/owen/misc/scripts/blocks/volumeup.sh", NULL };
+static const char *voldowncmd[] = { "bash", "/home/owen/misc/scripts/blocks/volumedown.sh", NULL };
+static const char *brightnessupcmd[] = { "xbacklight", "-inc", "10", NULL };
+static const char *brightnessdowncmd[] = { "xbacklight", "-dec", "10", NULL };
+static const char *pausecmd[] = { "mpc", "pause", NULL };
+static const char *playcmd[] = { "playerctl", "--player=spotify", "play-pause", NULL };
 static const char *nextcmd[] = { "playerctl", "--player=spotify", "next", NULL };
 static const char *prevcmd[] = { "playerctl", "--player=spotify", "previous", NULL };
-static const char *setmaxcmd[] = { "pactl", "set-sink-volume", "1", "100%", NULL };
-static const char *mutecmd[] = { "pactl", "set-sink-volume", "1", "0%", NULL };
+static const char *setmaxcmd[] = { "bash", "/home/owen/misc/scripts/blocks/set50.sh", NULL };
+static const char *mutecmd[] = { "bash", "/home/owen/misc/scripts/blocks/mute.sh", NULL };
 static const char *spotifycmd[] = { "spotify", NULL };
 static const char *ideascmd[] = { "bash", "/home/owen/misc/scripts/remind_dmenu.sh", NULL };
 static const char *openideascmd[] = { "bash", "/home/owen/misc/scripts/open_remind.sh", NULL };
 
-
 static Key keys[] = {
+	/* modifier                     key        function        argument */
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
@@ -94,12 +95,12 @@ static Key keys[] = {
 	{ MODKEY,                       XK_o,      spawn,          {.v = picomcmd } },
 	{ MODKEY,                       XK_t,      spawn,          {.v = killpicomcmd } },
 	{ MODKEY,                       XK_n,      spawn,          {.v = ncmpcppcmd } },
+	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slocksleepcmd } },
 	{ MODKEY,                       XK_l,      spawn,          {.v = slockcmd } },
 	{ MODKEY|ShiftMask,             XK_r,      spawn,          {.v = rangercmd } },	
 	{ MODKEY,                       XK_s,      spawn,          {.v = spotifycmd } },
-	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = sshmenucmd } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = ideascmd } },
-    	{ MODKEY,                       XK_e,      spawn,          {.v = openideascmd } },
+	{ MODKEY,                       XK_e,      spawn,          {.v = openideascmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_Down,   focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_Up,     focusstack,     {.i = -1 } },
@@ -124,12 +125,14 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },	
+	{ 0,				XF86XK_MonBrightnessUp,		spawn,	{ .v = brightnessupcmd } },
+	{ 0,				XF86XK_MonBrightnessDown,	spawn,	{ .v = brightnessdowncmd } },
 	{ 0,				XF86XK_AudioLowerVolume,	spawn,	{ .v = voldowncmd } },
 	{ 0,				XF86XK_AudioRaiseVolume,	spawn,	{ .v = volupcmd } },
-	{ 0,				XF86XK_AudioPlay,		spawn,	{ .v = playpausecmd } },
-	{ 0,				XF86XK_AudioNext,		spawn,	{ .v = nextcmd } },
-	{ 0,				XF86XK_AudioPrev,		spawn,	{ .v = prevcmd } },
+	{ 0,				XF86XK_LaunchA, 		spawn,	{ .v = playcmd } },
+	{ 0,				XF86XK_Explorer,		spawn,	{ .v = nextcmd } },
+	{ 0,				XF86XK_Search,  		spawn,	{ .v = prevcmd } },
 	{ ShiftMask,			XF86XK_AudioMute,		spawn,	{ .v = setmaxcmd } },	
 	{ 0,				XF86XK_AudioMute,		spawn,	{ .v = mutecmd } },
 	TAGKEYS(                        XK_1,                      0)
@@ -149,7 +152,9 @@ static Key keys[] = {
 static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	{ ClkStatusText,        0,              Button1,        sigdwmblocks,   {.i = 1} },
+	{ ClkStatusText,        0,              Button2,        sigdwmblocks,   {.i = 2} },
+	{ ClkStatusText,        0,              Button3,        sigdwmblocks,   {.i = 3} },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
