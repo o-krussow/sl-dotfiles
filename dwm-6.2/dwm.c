@@ -1801,12 +1801,12 @@ sigdwmblocks(const Arg *arg)
 		if (getdwmblockspid() == -1)
 			return;
 
-	if (sigqueue(dwmblockspid, SIGUSR1, sv) == -1) {
-		if (errno == ESRCH) {
-			if (!getdwmblockspid())
-				sigqueue(dwmblockspid, SIGUSR1, sv);
-		}
-	}
+	//if (sigqueue(dwmblockspid, SIGUSR1, sv) == -1) {
+	//	if (errno == ESRCH) {
+	//		if (!getdwmblockspid())
+	//			sigqueue(dwmblockspid, SIGUSR1, sv);
+	//	}
+	//}
 }
 
 void

@@ -8,7 +8,7 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=11" };
+static const char *fonts[]          = { "monospace:size=13" };
 static const char dmenufont[]       = "monospace:size=11";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -65,7 +65,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 //static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *dmenucmd[] = { "rofi", "-show", "run", "-theme", "~/misc/rofi/android_notification.rasi", NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *bravecmd[] = { "brave-bin", NULL };
+static const char *bravecmd[] = { "iridium", NULL };
 static const char *picomcmd[] = { "picom", NULL };
 static const char *killpicomcmd[] = { "pkill", "picom", NULL };
 static const char *rangercmd[] = { "st", "ranger", NULL };
