@@ -1,6 +1,6 @@
 #!/bin/bash
 killall dwmblocks; dwmblocks &
-bash /home/owen/.screenlayout/screenlayout.sh &
-/home/owen/.fehbg &
+bash $HOME/.screenlayout/screenlayout.sh &
+$HOME/.fehbg &
 picom &
 #dockd --daemon &
